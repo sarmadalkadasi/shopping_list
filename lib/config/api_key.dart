@@ -1,0 +1,1 @@
+const apiKey = "API_Key"; // Your Firebase API Key

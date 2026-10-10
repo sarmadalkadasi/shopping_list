@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:shoping_list/models/grocery_item.dart';
 
-class GroceryItem extends StatelessWidget {
-  const GroceryItem(this.removeItem, {
+class GroceryTile extends StatelessWidget {
+  const GroceryTile({
     super.key,
-    required this.id,
-    required this.name,
-    required this.quantity,
-    required this.color,
+    required this.item,
+    required this.onRemove,
   });
 
-  final String id;
-  final String name;
-  final String quantity;
-  final Color color;
-  final VoidCallback removeItem;
+  final GroceryItem item;
+  final VoidCallback onRemove;
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: ValueKey(id),
-      onDismissed: (direction) => removeItem(),
+      key: ValueKey(item.id),
+      onDismissed: (_) => onRemove(),
       child: ListTile(
-        title: Text(name),
-        leading: CircleAvatar(backgroundColor: color, radius: 15),
-        trailing: Text(quantity),
+        title: Text(item.name),
+        leading: CircleAvatar(
+          backgroundColor: item.category.color,
+          radius: 15,
+        ),
+        trailing: Text(item.quantity.toString()),
       ),
     );
   }
